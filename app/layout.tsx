@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,14 +26,84 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <header className="light-blue p-2">
-          <p>Header</p>
+        <header className="border-b">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div className="flex items-center">
+                <Link href="/" className="text-xl font-semibold">
+                  YourLogo
+                </Link>
+              </div>
+              <nav className="flex space-x-8">
+                <Link
+                  href="/"
+                  className="text-sm hover:text-gray-600 transition-colors"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/about"
+                  className="text-sm hover:text-gray-600 transition-colors"
+                >
+                  About
+                </Link>
+                <Link
+                  href="/contact"
+                  className="text-sm hover:text-gray-600 transition-colors"
+                >
+                  Contact
+                </Link>
+              </nav>
+            </div>
+          </div>
         </header>
-        {children}
-        <footer className="ghost-white p-2">
-          <p>Footer</p>
+        <main className="flex-1">{children}</main>
+        <footer className="border-t">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-sm font-semibold mb-4">About</h3>
+                <p className="text-sm text-gray-600">
+                  Your company description goes here. Make it brief but
+                  meaningful.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold mb-4">Quick Links</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      href="/terms"
+                      className="text-sm text-gray-600 hover:text-gray-900"
+                    >
+                      Terms
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/privacy"
+                      className="text-sm text-gray-600 hover:text-gray-900"
+                    >
+                      Privacy
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold mb-4">Contact</h3>
+                <p className="text-sm text-gray-600">
+                  email@example.com
+                  <br />
+                  +1 (555) 123-4567
+                </p>
+              </div>
+            </div>
+            <div className="mt-8 pt-8 border-t text-center text-sm text-gray-600">
+              © {new Date().getFullYear()} Your Company. All rights reserved.
+            </div>
+          </div>
         </footer>
       </body>
     </html>
